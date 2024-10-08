@@ -1,16 +1,17 @@
-import { pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
+import { numeric, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
 
 export const bids = pgTable("bids", {
   id: serial("id").primaryKey(),
   bid: text("bid").notNull(),
 });
 
-export const itemsTable = pgTable("items", {
+export const items = pgTable("items", {
   id: serial("id").primaryKey(),
   userId: text("user_id")
     .notNull()
     .references(() => userTable.id),
   name: text("name").notNull(),
+  startingPrice: numeric("starting_price"),
 });
 
 // Authentication tables
